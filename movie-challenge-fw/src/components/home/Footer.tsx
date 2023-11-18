@@ -1,27 +1,24 @@
-interface Props {
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+import ReactPaginate from 'react-paginate';
+import './Footer.css';
+
+interface FooterProps {
+  totalPages: number;
+  ChangePage: (selectedItem: { selected: number }) => void;
 }
 
-const Footer: React.FC<Props> = ({ page, setPage }) => {
-  const Previous = () => {
-    if (page !== 1) {
-      setPage(page - 1);
-    } else {
-      setPage(page);
-    }
-  };
-
-  const Next = () => {
-    if (page < 1000) {
-      setPage(page + 1);
-    }
-  };
-
+const Footer: React.FC<FooterProps> = ({ totalPages, ChangePage }) => {
   return (
     <footer className="pagination">
-      <button onClick={Previous}>Previous</button>
-      <button onClick={Next}>Next</button>
+      <ReactPaginate
+        previousLabel={'Previous'}
+        nextLabel={'Next'}
+        pageCount={totalPages}
+        onPageChange={ChangePage}
+        containerClassName={'paginationBttns'}
+        activeClassName={'paginationActive'}
+        disableInitialCallback={true}
+        initialPage={1}
+      />
     </footer>
   );
 };

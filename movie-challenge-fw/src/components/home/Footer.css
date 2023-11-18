@@ -1,0 +1,22 @@
+.pagination {
+    width: 73.9vw;
+    height: 60px;
+    background: #121212;;
+    position: fixed; 
+    bottom: 0; /* Place the footer at the bottom */
+    right: 0; /* Align the footer to the derecha */
+  }  
+
+.paginationBttns {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 2% 0;
+  }
+  .paginationBttns a {
+    border: 2px solid black;
+    padding: 5px 15px;
+    border-radius: 50px;
+    margin: 0 5px;
+  }

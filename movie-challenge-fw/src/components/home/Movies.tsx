@@ -18,6 +18,7 @@ const Movies = () => {
 
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const fetchMovies = (pageNumber: number) => {
     return axios
@@ -33,6 +34,7 @@ const Movies = () => {
       })
       .then((response) => {
         setMovies(response.data.results);
+        setTotalPages(response.data.total_pages);
       })
       .catch((error) => {
         console.error(error);
@@ -43,6 +45,11 @@ const Movies = () => {
   useEffect(() => {
     fetchMovies(page);
   }, [page]);
+
+  const ChangePage = ({ selected }: { selected: number }) => {
+    console.log(selected);
+    setPage(selected + 1);
+  };
 
   return (
     <div className="movies-big-container">
@@ -65,7 +72,7 @@ const Movies = () => {
           </div>
         ))}
       </div>
-      <Footer page={page} setPage={setPage}></Footer>
+      <Footer totalPages={totalPages} ChangePage={ChangePage}/>
     </div>
   );
 };
