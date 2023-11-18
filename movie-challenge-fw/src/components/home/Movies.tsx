@@ -50,9 +50,9 @@ const Movies = () => {
               src={movie.poster_path ? `${URL_IMAGE + movie.poster_path}` : 'unavailable'}
               alt={movie.title + ' poster'}
               className="movie-poster"
-              height={214}
+              height={250}
               width={140}
-              style={{ objectFit: 'cover' }}
+              style={{ objectFit: 'fill' }}
             />
             <p className="movie-info">
               <span>{movie.title}</span>
