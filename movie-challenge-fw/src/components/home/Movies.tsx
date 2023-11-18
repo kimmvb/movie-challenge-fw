@@ -1,6 +1,7 @@
 import axios from 'axios';
 import './Movies.css';
 import { useState, useEffect } from 'react';
+import Footer from './Footer';
 
 const Movies = () => {
   const API_URL = 'https://api.themoviedb.org/3';
@@ -16,8 +17,9 @@ const Movies = () => {
   }
 
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [page, setPage] = useState(1);
 
-  const fetchMovies = () => {
+  const fetchMovies = (pageNumber: number) => {
     return axios
       .get(`${API_URL}/discover/movie`, {
         params: {
@@ -25,7 +27,8 @@ const Movies = () => {
           include_adult: 'false',
           'primary_release_date.gte': '1980-01-01',
           'primary_release_date.lte': '1989-12-31',
-          sort_by: 'popularity.desc'
+          sort_by: 'popularity.desc',
+          page: pageNumber
         }
       })
       .then((response) => {
@@ -38,8 +41,8 @@ const Movies = () => {
   };
 
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    fetchMovies(page);
+  }, [page]);
 
   return (
     <div className="movies-big-container">
@@ -57,11 +60,12 @@ const Movies = () => {
             <p className="movie-info">
               <span>{movie.title}</span>
               <br />
-              <span id='release-date'>({movie.release_date})</span>
+              <span id="release-date">({movie.release_date})</span>
             </p>
           </div>
         ))}
       </div>
+      <Footer page={page} setPage={setPage}></Footer>
     </div>
   );
 };
