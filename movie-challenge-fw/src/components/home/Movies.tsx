@@ -47,7 +47,6 @@ const Movies = () => {
   }, [page]);
 
   const ChangePage = ({ selected }: { selected: number }) => {
-    console.log(selected);
     setPage(selected + 1);
   };
 
@@ -62,7 +61,6 @@ const Movies = () => {
               className="movie-poster"
               height={250}
               width={140}
-              style={{ objectFit: 'fill' }}
             />
             <p className="movie-info">
               <span>{movie.title}</span>
