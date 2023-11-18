@@ -6,13 +6,13 @@ const Sidebar = () => {
   return (
     <section className="filters">
       <img src={Logo} alt="80s Fever" className="logo"></img>
-      <div className="ordercontainer">
-        <p id="ordertext">Order by:</p>
-        <button className="orderbutton">
+      <div className="order-container">
+        <p id="order-text">Order by:</p>
+        <button className="order-button">
           <FontAwesomeIcon icon={faArrowUpAZ} style={{ color: '#000000' }} />
           Alphabetical Asc. (A -&gt; Z)
         </button>
-        <button className="orderbutton">
+        <button className="order-button">
           <FontAwesomeIcon icon={faArrowDownAZ} style={{ color: '#000000' }} />
           Alphabetical Dsc. (Z -&gt; A)
         </button>
