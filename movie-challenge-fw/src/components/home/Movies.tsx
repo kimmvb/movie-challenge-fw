@@ -1,49 +1,30 @@
-import axios from 'axios';
 import './Movies.css';
+import { Movie, fetchMovies } from '../FetchMovies';
 import { useState, useEffect } from 'react';
+import PosterUnavailable from '../assets/PosterUnavailable.svg'
 import Footer from './Footer';
 
 const Movies = () => {
-  const API_URL = 'https://api.themoviedb.org/3';
-  const API_KEY = 'aed0b9b04b9b2314524e703621a1f16e';
   //const IMAGE_PATH = 'https://image.tmdb.org/t/p/original';
   const URL_IMAGE = 'https://image.tmdb.org/t/p/original';
-
-  interface Movie {
-    id: number;
-    title: string;
-    release_date: string;
-    poster_path: string;
-  }
 
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const fetchMovies = (pageNumber: number) => {
-    return axios
-      .get(`${API_URL}/discover/movie`, {
-        params: {
-          api_key: `${API_KEY}`,
-          include_adult: 'false',
-          'primary_release_date.gte': '1980-01-01',
-          'primary_release_date.lte': '1989-12-31',
-          sort_by: 'popularity.desc',
-          page: pageNumber
-        }
-      })
-      .then((response) => {
-        setMovies(response.data.results);
-        setTotalPages(response.data.total_pages);
-      })
-      .catch((error) => {
-        console.error(error);
-        throw error;
-      });
-  };
-
   useEffect(() => {
-    fetchMovies(page);
+    const fetchData = async () => {
+      try {
+        const response = await fetchMovies(page);
+        setMovies(response.results);
+        setTotalPages(response.total_pages);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (error) {
+        console.error('Error fetching movies:', error);
+      }
+    };
+
+    fetchData();
   }, [page]);
 
   const ChangePage = ({ selected }: { selected: number }) => {
@@ -56,7 +37,7 @@ const Movies = () => {
         {movies.map((movie) => (
           <div className="movie-card" key={movie.id}>
             <img
-              src={movie.poster_path ? `${URL_IMAGE + movie.poster_path}` : 'unavailable'}
+              src={movie.poster_path ? `${URL_IMAGE + movie.poster_path}` : PosterUnavailable}
               alt={movie.title + ' poster'}
               className="movie-poster"
               height={250}
@@ -70,7 +51,7 @@ const Movies = () => {
           </div>
         ))}
       </div>
-      <Footer totalPages={totalPages} ChangePage={ChangePage}/>
+      <Footer totalPages={totalPages} ChangePage={ChangePage} />
     </div>
   );
 };
