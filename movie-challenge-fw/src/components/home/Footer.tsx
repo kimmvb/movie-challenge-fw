@@ -8,7 +8,6 @@ interface FooterProps {
   ChangePage: (selectedItem: { selected: number }) => void;
 }
 
-//<FontAwesomeIcon icon={faAngleRight} style={{color: "#000000",}} />
 const Footer: React.FC<FooterProps> = ({ totalPages, ChangePage }) => {
   return (
     <footer className="pagination">
