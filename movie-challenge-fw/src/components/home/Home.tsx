@@ -1,4 +1,3 @@
-import './Home.css';
 import Sidebar from './Sidebar';
 import Movies from './Movies';
 

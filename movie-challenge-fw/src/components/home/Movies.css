@@ -16,7 +16,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 73.9vw;
+  width: 70.4vw;
   margin-top: 10px;
   margin-left: auto;
   margin-bottom: 60px;
@@ -24,14 +24,17 @@
 
 .movie-card {
   display: flex;
-  width: 140px;
-  height: 300px;
+  width: 125px;
+  height: 280px;
   margin-bottom: 30px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   margin: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
   /*Box colors*/
   background: linear-gradient(
     180deg,
@@ -44,7 +47,7 @@
   color: #e1e1e1;
   text-align: center;
   line-height: normal;
-  font-size: 11pt;
+  font-size: 10pt;
 }
 
 #release-date {
