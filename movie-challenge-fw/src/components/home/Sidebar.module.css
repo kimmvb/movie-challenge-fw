@@ -8,23 +8,23 @@
   position: fixed;
   margin-right: 500px;
   background: rgba(0, 0, 0, 0.52);
-  height: 100%; /* Establece la altura deseada */
+  height: 100%;
   overflow-y: auto;
   gap: 20px;
 }
 
-/* Estilos del scroll solo para navegadores WebKit (Chrome, Safari, etc.) */
+/* Scroll */
 .filters::-webkit-scrollbar {
-  width: 10px; /* Ancho del scroll */
+  width: 10px; /* Scroll's width */
 }
 
 .filters::-webkit-scrollbar-thumb {
-  background-color: rgb(95, 0, 104); /* Color de la barra de desplazamiento */
-  border-radius: 6px; /* Bordes redondeados de la barra de desplazamiento */
+  background-color: rgb(95, 0, 104); /* Bar's color */
+  border-radius: 6px; /* Bar's borders */
 }
 
 .filters::-webkit-scrollbar-track {
-  background-color: #303030; /* Color del área del track (fondo detrás de la barra de desplazamiento) */
+  background-color: #303030; /* Track's color (background behind bar) */
 }
 
 .filters::-webkit-scrollbar-thumb:hover {
@@ -32,7 +32,7 @@
     51,
     0,
     56
-  ); /* Cambiar el color al pasar el mouse sobre la barra de desplazamiento */
+  ); /* Color changes when mouse in over the scroll section */
 }
 
 .logo {
@@ -41,7 +41,7 @@
   object-fit: contain;
 }
 
-.order-container {
+.order_container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -57,7 +57,7 @@
   line-height: 16px; /* 145.455% */
 }
 
-#order-text {
+#containers_text {
   color: #fff;
   text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
   font-size: 17px;
@@ -68,7 +68,7 @@
   margin-bottom: 0;
 }
 
-.order-button {
+.order_select {
   background: rgba(255, 0, 184, 0.75);
   box-shadow: -4px 4px 4px 0px rgba(152, 0, 110, 0.7);
   display: flex;
@@ -85,7 +85,7 @@
   font-family: 'Lato', sans-serif;
 }
 
-.genre-container {
+.genre_container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -101,7 +101,7 @@
   line-height: 16px; /* 145.455% */
 }
 
-.genre-button {
+.genre_button {
   background: rgba(255, 0, 184, 0.75);
   box-shadow: -4px 4px 4px 0px rgba(152, 0, 110, 0.7);
   display: flex;
@@ -118,12 +118,12 @@
   font-family: 'Lato', sans-serif;
 }
 
-.genre-button:hover {
+.genre_button:hover {
   background: #ff00b7;
   box-shadow: -4px 4px 4px 0px #a60078;
 }
 
-.genre-button:active {
+.genre_button:active {
   background: #fee500;
   box-shadow: -1px 1px 4px 0px rgba(254, 229, 0, 0.24);
 }

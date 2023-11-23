@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import PosterUnavailable from '../assets/PosterUnavailable.svg'
 import Footer from './Footer';
 
-const Movies = () => {
-  //const IMAGE_PATH = 'https://image.tmdb.org/t/p/original';
+const Movies: React.FC<{ sortByOption: string }> = ({ sortByOption }) => {
   const URL_IMAGE = 'https://image.tmdb.org/t/p/original';
 
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -15,7 +14,7 @@ const Movies = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchMovies(page);
+        const response = await fetchMovies(page, sortByOption);
         setMovies(response.results);
         setTotalPages(response.total_pages);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -25,7 +24,7 @@ const Movies = () => {
     };
 
     fetchData();
-  }, [page]);
+  }, [page, sortByOption]);
 
   const ChangePage = ({ selected }: { selected: number }) => {
     setPage(selected + 1);

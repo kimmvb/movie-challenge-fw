@@ -24,7 +24,11 @@ export interface DiscoverMoviesResponse {
   results: Movie[];
 }
 
-export const fetchMovies = (pageNumber: number): Promise<DiscoverMoviesResponse> => {
+//sort by: string
+export const fetchMovies = (
+  pageNumber: number,
+  sortByOption: string = 'popularity.desc'
+): Promise<DiscoverMoviesResponse> => {
   const API_URL = 'https://api.themoviedb.org/3';
   const API_KEY = 'aed0b9b04b9b2314524e703621a1f16e';
   return axios
@@ -32,9 +36,11 @@ export const fetchMovies = (pageNumber: number): Promise<DiscoverMoviesResponse>
       params: {
         api_key: `${API_KEY}`,
         include_adult: 'false',
+        include_video: 'false',
+        language: 'en-US',
         'primary_release_date.gte': '1980-01-01',
         'primary_release_date.lte': '1989-12-31',
-        sort_by: 'popularity.desc',
+        sort_by: sortByOption,
         page: pageNumber
       }
     })
