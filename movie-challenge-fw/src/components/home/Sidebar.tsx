@@ -5,10 +5,15 @@ import Movies from './Movies';
 
 const Sidebar = () => {
   const [sortBy, setSortBy] = useState<string>();
+  const [selectedGenres, setSelectedGenres] = useState<string | undefined>(undefined);
 
   const handleSortByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption: string = event.target.value;
     setSortBy(selectedOption);
+  };
+
+  const handleGenreClick = (selectedGenre: string) => {
+    setSelectedGenres(selectedGenre);
   };
 
   return (
@@ -60,21 +65,66 @@ const Sidebar = () => {
         </div>
         <div className={styles.genre_container}>
           <p id={styles.containers_text}>Filter by genre:</p>
-          <button className={styles.genre_button}>Action</button>
-          <button className={styles.genre_button}>Adventure</button>
-          <button className={styles.genre_button}>Animation</button>
-          <button className={styles.genre_button}>Comedy</button>
-          <button className={styles.genre_button}>Crime</button>
-          <button className={styles.genre_button}>Drama</button>
-          <button className={styles.genre_button}>Fantasy</button>
-          <button className={styles.genre_button}>Horror</button>
-          <button className={styles.genre_button}>Mystery</button>
-          <button className={styles.genre_button}>Romance</button>
-          <button className={styles.genre_button}>Sci-Fi</button>
-          <button className={styles.genre_button}>Thriller</button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('28')}>
+            Action
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('12')}>
+            Adventure
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('16')}>
+            Animation
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('35')}>
+            Comedy
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('80')}>
+            Crime
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('99')}>
+            Documentary
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('18')}>
+            Drama
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('10751')}>
+            Family
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('14')}>
+            Fantasy
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('36')}>
+            History
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('27')}>
+            Horror
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('10402')}>
+            Music
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('9648')}>
+            Mystery
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('10749')}>
+            Romance
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('878')}>
+            Sci-Fi
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('10770')}>
+            TV Movie
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('53')}>
+            Thriller
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('10752')}>
+            War
+          </button>
+          <button className={styles.genre_button} onClick={() => handleGenreClick('37')}>
+            Western
+          </button>
         </div>
       </section>
-      <Movies sortByOption={sortBy || 'popularity.desc'} />
+      <Movies sortByOption={sortBy || 'popularity.desc'} genres={selectedGenres || undefined} />
     </>
   );
 };

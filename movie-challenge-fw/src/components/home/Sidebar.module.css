@@ -28,11 +28,7 @@
 }
 
 .filters::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(
-    51,
-    0,
-    56
-  ); /* Color changes when mouse in over the scroll section */
+  background-color: rgb(51, 0, 56); /* Color changes when mouse in over the scroll section */
 }
 
 .logo {
@@ -90,7 +86,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 300px;
+  width: 330px;
   height: 311px;
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.6);
@@ -113,7 +109,7 @@
   color: black;
   border: 0.6px solid #000;
   cursor: pointer;
-  width: 80px;
+  width: 90px;
   height: 38px;
   font-family: 'Lato', sans-serif;
 }
