@@ -36,10 +36,19 @@ interface MovieApiParams {
   with_genres?: string;
 }
 
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface AllGenresResponse {
+  genres: Genre[];
+}
+
 export const fetchMovies = (
   pageNumber: number,
   sortByOption: string = 'popularity.desc',
-  genreId?: string
+  genresId?: string[]
 ): Promise<DiscoverMoviesResponse> => {
   const API_URL = 'https://api.themoviedb.org/3';
   const API_KEY = 'aed0b9b04b9b2314524e703621a1f16e';
@@ -55,8 +64,8 @@ export const fetchMovies = (
     sort_by: sortByOption
   };
 
-  if (genreId !== undefined) {
-    params.with_genres = genreId;
+  if (genresId && genresId.length > 0) {
+    params.with_genres = genresId.join(',');
   }
 
   console.log(params);
@@ -66,6 +75,24 @@ export const fetchMovies = (
       params: params
     })
     .then((response: AxiosResponse<DiscoverMoviesResponse>) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
+};
+
+export const allGenres = (): Promise<AllGenresResponse> => {
+  const API_URL = 'https://api.themoviedb.org/3';
+  const API_KEY = 'aed0b9b04b9b2314524e703621a1f16e';
+
+  return axios
+    .get(`${API_URL}/genre/movie/list`, {
+      params: { api_key: `${API_KEY}`, language: 'en' }
+    })
+    .then((response) => {
+      console.log(response.data);
       return response.data;
     })
     .catch((error) => {

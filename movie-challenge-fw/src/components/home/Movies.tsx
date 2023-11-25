@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 interface MoviesProps {
   sortByOption: string;
-  genres?: string;
+  genres?: string[];
 }
 
 const Movies: React.FC<MoviesProps> = ({ sortByOption, genres }) => {
@@ -22,6 +22,7 @@ const Movies: React.FC<MoviesProps> = ({ sortByOption, genres }) => {
         const response = await fetchMovies(page, sortByOption, genres);
         setMovies(response.results);
         setTotalPages(response.total_pages);
+        console.log(genres);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } catch (error) {
         console.error('Error fetching movies:', error);
