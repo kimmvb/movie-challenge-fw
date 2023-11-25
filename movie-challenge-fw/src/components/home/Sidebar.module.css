@@ -3,14 +3,13 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  align-content: center;
   width: 28.5vw;
   height: 100vh;
   position: fixed;
   margin-right: 500px;
   background: rgba(0, 0, 0, 0.52);
-  height: 100%;
   overflow-y: auto;
-  gap: 20px;
 }
 
 /* Scroll */
@@ -32,36 +31,40 @@
 }
 
 .logo {
-  max-width: 85%;
+  max-width: 77%;
   height: auto;
   object-fit: contain;
+  margin-bottom: 25px;
 }
 
 .order_container {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 277px;
-  height: 275px;
-  border-radius: 5px;
+  width: 330px;
+  height: 100px;
+  border-radius: 5px 5px 0px 0px;
   background: rgba(0, 0, 0, 0.6);
-  padding-bottom: 23px;
   gap: 12px;
   font-size: 11px;
   font-weight: 400;
   line-height: 16px; /* 145.455% */
 }
 
-#containers_text {
+#containers_text_sort {
   color: #fff;
   text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 600;
-  line-height: 16px; /* 84.211%  */
-  padding: 0px 60px;
-  margin-top: 16px;
-  margin-bottom: 0;
+
+}
+#containers_text_genre {
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.25);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0px 96px;
+
 }
 
 .order_select {
@@ -87,8 +90,7 @@
   align-items: center;
   justify-content: center;
   width: 330px;
-  height: 311px;
-  border-radius: 5px;
+  border-radius: 0px 0px 5px 5px;
   background: rgba(0, 0, 0, 0.6);
   padding-bottom: 23px;
   gap: 12px;

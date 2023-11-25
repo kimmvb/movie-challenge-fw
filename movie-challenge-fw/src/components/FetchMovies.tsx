@@ -36,12 +36,12 @@ interface MovieApiParams {
   with_genres?: string;
 }
 
-interface Genre {
+export interface Genre {
   id: number;
   name: string;
 }
 
-interface AllGenresResponse {
+export interface AllGenresResponse {
   genres: Genre[];
 }
 
@@ -92,7 +92,6 @@ export const allGenres = (): Promise<AllGenresResponse> => {
       params: { api_key: `${API_KEY}`, language: 'en' }
     })
     .then((response) => {
-      console.log(response.data);
       return response.data;
     })
     .catch((error) => {

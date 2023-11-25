@@ -1,4 +1,4 @@
-import './Movies.css';
+import styles from './Movies.module.css';
 import { Movie, fetchMovies } from '../FetchMovies';
 import { useState, useEffect } from 'react';
 import PosterUnavailable from '../assets/PosterUnavailable.svg';
@@ -37,21 +37,21 @@ const Movies: React.FC<MoviesProps> = ({ sortByOption, genres }) => {
   };
 
   return (
-    <div className="movies-big-container">
-      <div className="movies-small-container">
+    <div className={styles.movies_big_container}>
+      <div className={styles.movies_small_container}>
         {movies.map((movie) => (
-          <div className="movie-card" key={movie.id}>
+          <div className={styles.movie_card} key={movie.id}>
             <img
               src={movie.poster_path ? `${URL_IMAGE + movie.poster_path}` : PosterUnavailable}
               alt={movie.title + ' poster'}
-              className="movie-poster"
+              className={styles.movie_poster}
               height={220}
               width={125}
             />
-            <p className="movie-info">
+            <p className={styles.movie_info}>
               <span>{movie.title}</span>
               <br />
-              <span id="release-date">({movie.release_date})</span>
+              <span id={styles.release_date}>({movie.release_date})</span>
             </p>
           </div>
         ))}
