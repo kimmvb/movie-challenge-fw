@@ -9,8 +9,14 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ totalPages, ChangePage }) => {
+  const footerWidth = {
+    width: totalPages > 0 ? '70.3vw' : '71.3vw', 
+  };
+
+  console.log(totalPages);
+
   return (
-    <footer className={styles.pagination}>
+    <footer className={styles.pagination}  style={footerWidth} >
       <ReactPaginate
         previousLabel={<FontAwesomeIcon icon={faAngleLeft} style={{ color: '#000000' }} />}
         nextLabel={<FontAwesomeIcon icon={faAngleRight} style={{ color: '#000000' }} />}

@@ -3,6 +3,7 @@ import { Movie, fetchMovies } from '../FetchMovies';
 import { useState, useEffect } from 'react';
 import PosterUnavailable from '../assets/PosterUnavailable.svg';
 import Footer from './Footer';
+import NoResults from '../assets/NoResults.svg';
 
 interface MoviesProps {
   sortByOption: string;
@@ -39,22 +40,27 @@ const Movies: React.FC<MoviesProps> = ({ sortByOption, genres }) => {
   return (
     <div className={styles.movies_big_container}>
       <div className={styles.movies_small_container}>
-        {movies.map((movie) => (
-          <div className={styles.movie_card} key={movie.id}>
-            <img
-              src={movie.poster_path ? `${URL_IMAGE + movie.poster_path}` : PosterUnavailable}
-              alt={movie.title + ' poster'}
-              className={styles.movie_poster}
-              height={220}
-              width={125}
-            />
-            <p className={styles.movie_info}>
-              <span>{movie.title}</span>
-              <br />
-              <span id={styles.release_date}>({movie.release_date})</span>
-            </p>
-          </div>
-        ))}
+        {movies && movies.length > 0 ? (
+          movies.map((movie) => (
+            <div className={styles.movie_card} key={movie.id}>
+              <img
+                src={movie.poster_path ? `${URL_IMAGE + movie.poster_path}` : PosterUnavailable}
+                alt={movie.title + ' poster'}
+                className={styles.movie_poster}
+                height={220}
+                width={125}
+                style={{maxHeight: '220px',}}
+              />
+              <p className={styles.movie_info}>
+                <span>{movie.title}</span>
+                <br />
+                <span id={styles.release_date}>({movie.release_date})</span>
+              </p>
+            </div>
+          ))
+        ) : (
+          <img className={styles.no_results} src= {NoResults}/>
+        )}
       </div>
       <Footer totalPages={totalPages} ChangePage={ChangePage} />
     </div>
