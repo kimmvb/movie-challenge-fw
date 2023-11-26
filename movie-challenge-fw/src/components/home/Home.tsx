@@ -1,7 +1,7 @@
 import Sidebar from './Sidebar';
 
 
-function Home() {
+const Home = () => {
   return (
     <div className='home'>
     <Sidebar/>

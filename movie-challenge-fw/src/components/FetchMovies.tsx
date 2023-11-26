@@ -68,8 +68,6 @@ export const fetchMovies = (
     params.with_genres = genresId.join(',');
   }
 
-  console.log(params);
-
   return axios
     .get<DiscoverMoviesResponse>(`${API_URL}/discover/movie`, {
       params: params
@@ -99,3 +97,20 @@ export const allGenres = (): Promise<AllGenresResponse> => {
       throw error;
     });
 };
+
+export const fetchMovieID = (movieID: number) => {
+  const API_URL = 'https://api.themoviedb.org/3';
+  const API_KEY = 'aed0b9b04b9b2314524e703621a1f16e';
+
+  return axios
+    .get(`${API_URL}/movie/${movieID}`, {
+      params: { api_key: `${API_KEY}`, language: 'en-US' }
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
+}

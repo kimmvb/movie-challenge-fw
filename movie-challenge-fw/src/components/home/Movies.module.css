@@ -8,6 +8,16 @@
     url(../../fonts/Lato-Light.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Lato';
+  font-style: bold;
+  font-weight: 500;
+  src:
+    local('Lato Regular'),
+    local('Lato-Regular'),
+    url(../../fonts/Lato-Bold.ttf) format('truetype');
+}
+
 .movies_big_container {
   display: flex;
 }
@@ -48,6 +58,33 @@
   text-align: center;
   line-height: normal;
   font-size: 10pt;
+  /*Transition*/
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie_card:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.9) 85%,
+    rgba(0, 0, 0, 0) 90%,
+    rgba(84, 1, 91, 0.85) 100%
+  );
+  box-shadow: none;
+  font-weight: 500;
+}
+
+.movie_card:hover .movie_poster {
+  opacity: 0.3;
+  background: lightgray 50%;
+  mix-blend-mode: screen;
+}
+
+.movie_card:hover #release_date {
+  font-weight: 400;
+}
+
+.link_no_underline {
+  text-decoration: none;
 }
 
 #release_date {
@@ -59,3 +96,5 @@
   height: 450px;
   margin-top: 70px;
 }
+
+

@@ -13,8 +13,6 @@ const Footer: React.FC<FooterProps> = ({ totalPages, ChangePage }) => {
     width: totalPages > 0 ? '70.3vw' : '71.3vw', 
   };
 
-  console.log(totalPages);
-
   return (
     <footer className={styles.pagination}  style={footerWidth} >
       <ReactPaginate

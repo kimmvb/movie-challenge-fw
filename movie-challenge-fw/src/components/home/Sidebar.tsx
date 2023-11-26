@@ -74,7 +74,8 @@ const Sidebar = () => {
                   : 'rgba(255, 0, 184, 0.75)',
                 boxShadow: selectedGenres.includes(genre.id.toString())
                   ? ''
-                  : '-4px 4px 4px 0px rgba(152, 0, 110, 0.7)'
+                  : '-4px 4px 4px 0px rgba(152, 0, 110, 0.7)',
+                transition: 'background-color 0.3s ease, box-shadow 0.3s ease'
               }}
               onClick={() => handleGenreClick(genre.id.toString())}>
               {genre.name}
