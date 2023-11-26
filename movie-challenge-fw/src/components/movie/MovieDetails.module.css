@@ -1,0 +1,118 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: bold;
+  font-weight: 500;
+  src:
+    local('Lato Regular'),
+    local('Lato-Regular'),
+    url(../../fonts/Lato-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Marcellus SC';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('Marcellus SC Regular'),
+    local('MarcellusSC-Regular'),
+    url(../../fonts/MarcellusSC-Regular.ttf) format('truetype');
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98vw;
+  height: 8vw;
+}
+
+.go_home {
+  display: flex;
+  margin-left: 70px;
+  gap: 18px;
+}
+
+.icon_hover {
+  color: #fee500;
+  margin-top: 12px;
+  cursor: pointer;
+  font-size: 2.3em;
+  transition:
+    color 0.3s ease,
+    font-size 0.3s ease; /* Agregamos una transición suave para el cambio de color */
+}
+
+.icon_hover:hover {
+  color: #7f008af0;
+  font-size: 2.5em; /* Cambia "nuevo-color-aqui" al color que desees cuando el mouse está sobre el icono */
+}
+
+.go_home_text {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.43) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: large;
+  font-style: bold;
+  font-weight: 500;
+}
+
+.logo {
+  max-height: 77%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  margin-right: 70px;
+}
+
+.movie_details {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  gap: 35px;
+  margin: 0px 95px;
+  padding: 50px;
+  background: rgba(0, 0, 0, 0.52);
+  box-shadow: -7px 7px 4px rgba(255, 0, 184, 0.75);
+}
+
+.poster {
+  height: 340px;
+  border-radius: 1px;
+  border: 2px solid rgba(195, 0, 211, 0.94);
+}
+
+#movie_title {
+  font-family: 'Marcellus SC', sans-serif;
+  font-size: 28px;
+  text-align: center;
+}
+
+.more_details {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid white;
+  padding: 25px 25px;
+  width: 75%;
+}
+
+.details_header {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.stars {
+  display: flex;
+  column-gap: 2px;
+  font-size: 20px;
+}
+
+.rating {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 18px;
+  align-content: center;
+  width: 250px;
+}

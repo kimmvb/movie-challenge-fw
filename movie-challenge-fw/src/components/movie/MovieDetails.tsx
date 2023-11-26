@@ -5,6 +5,9 @@ import Logo from '../assets/Logo.svg';
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import PosterUnavailable from '../assets/PosterUnavailable.svg';
+import styles from './MovieDetails.module.css';
+import { Link } from 'react-router-dom';
+import Rating from './StarsRating';
 
 const MovieDetails = () => {
   interface MovieDetails {
@@ -53,23 +56,55 @@ const MovieDetails = () => {
     return formattedDate;
   };
 
+  const justYear = (dateString: string) => {
+    const formattedDate = new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric'
+    });
+    return formattedDate;
+  };
+
   return (
     <>
-      <header>
-        <FontAwesomeIcon icon={faCircleArrowLeft} style={{ color: '#fee500' }} />
-        <p>Back to the movie list</p>
-        <img src={Logo}></img>
+      <header className={styles.header}>
+        <div className={styles.go_home}>
+          <Link to={'/'}>
+            <FontAwesomeIcon icon={faCircleArrowLeft} size="2xl" className={styles.icon_hover} />
+          </Link>
+          <p className={styles.go_home_text}>Back to the movie list</p>
+        </div>
+        <img src={Logo} className={styles.logo}></img>
       </header>
-      <section>
+      <section className={styles.movie_details}>
         <img
           src={
             movieDetails?.poster_path
               ? `${URL_IMAGE + movieDetails?.poster_path}`
               : PosterUnavailable
-          }></img>
-        <p>Release day: {movieDetails && formatDateToWords(movieDetails.release_date)}</p>
-        <p>Genres: {movieDetails?.genres && renderGenres(movieDetails?.genres)}</p>
-        <p>Overview: {movieDetails?.overview}</p>
+          }
+          className={styles.poster}></img>
+        <div className={styles.more_details}>
+          <div className={styles.details_header}>
+            <h2 id={styles.movie_title}>
+              {movieDetails?.title} <br /> ({movieDetails && justYear(movieDetails.release_date)})
+            </h2>
+            <div className={styles.rating}>
+              <Rating averageRating={movieDetails?.vote_average}></Rating>
+              <p><b>Vote average:</b> {movieDetails?.vote_average.toFixed(1)}</p>
+            </div>
+          </div>
+          <p>
+            <b style={{ fontSize: '17px' }}>Release day</b>:{' '}
+            {movieDetails && formatDateToWords(movieDetails.release_date)}
+          </p>
+          <p>
+            <b style={{ fontSize: '17px' }}>Genres</b>:{' '}
+            {movieDetails?.genres && renderGenres(movieDetails?.genres)}
+          </p>
+          <p>
+            <b style={{ fontSize: '17px' }}>Overview</b>: <br />
+            <br /> {movieDetails?.overview}
+          </p>
+        </div>
       </section>
     </>
   );

@@ -10,9 +10,8 @@ const Sidebar = () => {
   const [genresAPI, setGenresAPI] = useState<AllGenresResponse | null>(null);
 
   useEffect(() => {
-    // Llamada a la API cuando se monta el componente
     fetchGenres();
-  }, []); // El segundo argumento de useEffect es un array de dependencias, en este caso, está vacío para que se ejecute solo una vez
+  }, []);
 
   const fetchGenres = async () => {
     try {
@@ -30,10 +29,10 @@ const Sidebar = () => {
 
   const handleGenreClick = (selectedGenre: string) => {
     if (selectedGenres.includes(selectedGenre)) {
-      // Si ya está presente, quítalo
+      // Erase genre if it is present
       setSelectedGenres(selectedGenres.filter((genre) => genre !== selectedGenre));
     } else {
-      // Si no está presente, agrégalo
+      // Add genre if it is not present
       setSelectedGenres([...selectedGenres, selectedGenre]);
     }
   };
