@@ -5,6 +5,7 @@ import PosterUnavailable from '../assets/PosterUnavailable.svg';
 import Footer from './Footer';
 import NoResults from '../assets/NoResults.svg';
 import { Link } from 'react-router-dom';
+import { useMovieContext } from '../MovieContext';
 
 interface MoviesProps {
   sortByOption: string;
@@ -15,8 +16,10 @@ const Movies: React.FC<MoviesProps> = ({ sortByOption, genres }) => {
   const URL_IMAGE = 'https://image.tmdb.org/t/p/original';
 
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  const { page, setPage } =
+    useMovieContext();
 
   useEffect(() => {
     const fetchData = async () => {

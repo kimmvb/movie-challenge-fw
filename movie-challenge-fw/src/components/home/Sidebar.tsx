@@ -1,17 +1,17 @@
 import styles from './Sidebar.module.css';
 import Logo from '../assets/Logo.svg';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Movies from './Movies';
-import { allGenres, AllGenresResponse, Genre } from '../FetchMovies';
+import { allGenres, Genre } from '../FetchMovies';
+import { useMovieContext } from '../MovieContext';
 
 const Sidebar = () => {
-  const [sortBy, setSortBy] = useState<string>();
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const [genresAPI, setGenresAPI] = useState<AllGenresResponse | null>(null);
+  const { sortBy, setSortBy, selectedGenres, setSelectedGenres, genresAPI, setGenresAPI } =
+    useMovieContext();
 
   useEffect(() => {
     fetchGenres();
-  }, []);
+  });
 
   const fetchGenres = async () => {
     try {
@@ -28,13 +28,11 @@ const Sidebar = () => {
   };
 
   const handleGenreClick = (selectedGenre: string) => {
-    if (selectedGenres.includes(selectedGenre)) {
-      // Erase genre if it is present
-      setSelectedGenres(selectedGenres.filter((genre) => genre !== selectedGenre));
-    } else {
-      // Add genre if it is not present
-      setSelectedGenres([...selectedGenres, selectedGenre]);
-    }
+    const updatedGenres = selectedGenres.includes(selectedGenre)
+      ? selectedGenres.filter((genre) => genre !== selectedGenre)
+      : [...selectedGenres, selectedGenre];
+
+    setSelectedGenres(updatedGenres);
   };
 
   return (
