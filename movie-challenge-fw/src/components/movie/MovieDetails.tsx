@@ -1,4 +1,4 @@
-import { fetchMovieID } from '../FetchMovies';
+import { fetchMovieID } from '../data/FetchMovies';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../assets/Logo.svg';
@@ -17,6 +17,7 @@ const MovieDetails = () => {
     release_date: string;
     genres: Genre[];
     vote_average: number;
+    vote_count: number;
   }
 
   interface Genre {
@@ -89,7 +90,12 @@ const MovieDetails = () => {
             </h2>
             <div className={styles.rating}>
               <Rating averageRating={movieDetails?.vote_average}></Rating>
-              <p><b>Vote average:</b> {movieDetails?.vote_average.toFixed(1)}</p>
+              <p>
+                <b>Vote average:</b> {movieDetails?.vote_average.toFixed(1)}
+              </p>
+              <p>
+                <b>Total votes:</b> {movieDetails?.vote_count}
+              </p>
             </div>
           </div>
           <p>

@@ -2,7 +2,7 @@ import styles from './Sidebar.module.css';
 import Logo from '../assets/Logo.svg';
 import { useEffect } from 'react';
 import Movies from './Movies';
-import { allGenres, Genre } from '../FetchMovies';
+import { allGenres, Genre } from '../data/FetchMovies';
 import { useMovieContext } from '../MovieContext';
 
 const Sidebar = () => {
@@ -10,17 +10,14 @@ const Sidebar = () => {
     useMovieContext();
 
   useEffect(() => {
-    fetchGenres();
-  });
-
-  const fetchGenres = async () => {
-    try {
+    const fetchGenres = async () => {
       const genresData = await allGenres();
-      setGenresAPI(genresData);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+      console.log(genresData.genres);
+      setGenresAPI(genresData.genres);
+    };
+
+    fetchGenres();
+  }, [setGenresAPI]);
 
   const handleSortByChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption: string = event.target.value;
@@ -61,7 +58,7 @@ const Sidebar = () => {
         </div>
         <div className={styles.genre_container}>
           <p id={styles.containers_text_genre}>Genres</p>
-          {genresAPI?.genres.map((genre: Genre) => (
+          {genresAPI.map((genre: Genre) => (
             <button
               key={genre.id}
               className={styles.genre_button}

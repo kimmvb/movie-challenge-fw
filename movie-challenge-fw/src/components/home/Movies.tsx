@@ -1,5 +1,5 @@
 import styles from './Movies.module.css';
-import { Movie, fetchMovies } from '../FetchMovies';
+import { Movie, fetchMovies } from '../data/FetchMovies';
 import { useState, useEffect } from 'react';
 import PosterUnavailable from '../assets/PosterUnavailable.svg';
 import Footer from './Footer';
@@ -18,19 +18,14 @@ const Movies: React.FC<MoviesProps> = ({ sortByOption, genres }) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [totalPages, setTotalPages] = useState(1);
 
-  const { page, setPage } =
-    useMovieContext();
+  const { page, setPage } = useMovieContext();
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
         const response = await fetchMovies(page, sortByOption, genres);
         setMovies(response.results);
         setTotalPages(response.total_pages);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } catch (error) {
-        console.error('Error fetching movies:', error);
-      }
     };
 
     fetchData();
@@ -38,6 +33,7 @@ const Movies: React.FC<MoviesProps> = ({ sortByOption, genres }) => {
 
   const ChangePage = ({ selected }: { selected: number }) => {
     setPage(selected + 1);
+    console.log(selected);
   };
 
   const formatDateToWords = (dateString: string) => {

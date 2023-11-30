@@ -1,13 +1,13 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { AllGenresResponse } from './FetchMovies';
+import { Genre } from './data/FetchMovies';
 
 interface MovieContextProps {
   sortBy: string;
   setSortBy: React.Dispatch<React.SetStateAction<string>>;
   selectedGenres: string[];
   setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>;
-  genresAPI: AllGenresResponse | null;
-  setGenresAPI: React.Dispatch<React.SetStateAction<AllGenresResponse | null>>;
+  genresAPI: Genre[];
+  setGenresAPI: React.Dispatch<React.SetStateAction<Genre[]>>;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -18,7 +18,7 @@ const initialMovieContext: MovieContextProps = {
   setSortBy: () => {},
   selectedGenres: [],
   setSelectedGenres: () => {},
-  genresAPI: null,
+  genresAPI: [],
   setGenresAPI: () => {},
   page: 1,
   setPage: () => {}
@@ -32,14 +32,13 @@ interface MovieProviderProps {
 }
 
 // Create a provider for the context
-export const MovieProvider: React.FC<MovieProviderProps> =  ({ children }) => {
+export const MovieProvider: React.FC<MovieProviderProps> = ({ children }) => {
   // Initial State
   const [sortBy, setSortBy] = useState<string>('');
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-  const [genresAPI, setGenresAPI] = useState<AllGenresResponse | null>(null);
+  const [genresAPI, setGenresAPI] = useState<Genre[]>([]);
   const [page, setPage] = useState(1);
 
-  
   // Group all states and functions in a object
   const movieContextValue = {
     sortBy,
@@ -57,6 +56,7 @@ export const MovieProvider: React.FC<MovieProviderProps> =  ({ children }) => {
 };
 
 // Function that is made for using the context in the children components
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMovieContext = () => {
   const context = useContext(MovieContext);
   if (!context) {

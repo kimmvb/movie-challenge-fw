@@ -75,10 +75,10 @@ export const fetchMovies = (
     .then((response: AxiosResponse<DiscoverMoviesResponse>) => {
       return response.data;
     })
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
+    //.catch((error) => {
+      //console.error(error);
+     // throw error;
+    //});
 };
 
 export const allGenres = (): Promise<AllGenresResponse> => {
@@ -92,10 +92,10 @@ export const allGenres = (): Promise<AllGenresResponse> => {
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
+    //.catch((error) => {
+     //// console.error(error);
+     // throw error;
+   // });
 };
 
 export const fetchMovieID = (movieID: number) => {
@@ -109,8 +109,8 @@ export const fetchMovieID = (movieID: number) => {
     .then((response) => {
       return response.data;
     })
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
+    //.catch((error) => {
+    //  console.error(error);
+    //  throw error;
+   // });
 }
