@@ -5,6 +5,9 @@
 
 *(This catalogue is requested by [_The Movie Database API V3_](https://developer.themoviedb.org/docs))*
 
+![80's fever - home](https://github.com/kimmvb/movie-challenge-fw/assets/137528066/061dafb4-86d9-42ef-a9af-24381f934f7d)
+
+
 ## Who is it aimed to? 🎯
 
 People who want to *sort, filter, and, find* 80's movies.
@@ -30,6 +33,7 @@ People who want to *sort, filter, and, find* 80's movies.
 Thinking about how vibrant colors where trendy back then, our web page was created to embody this generation.
 
 
+![Logo](https://github.com/kimmvb/movie-challenge-fw/assets/137528066/918c9790-b822-45a8-9e27-d64a7b76d82b)
 
 
 
@@ -47,6 +51,8 @@ Thinking about how vibrant colors where trendy back then, our web page was creat
 To ensure our project funcionalities were working properly, they were tested.
 
     > There are three different test files. 
+
+![80's fever - Test](https://github.com/kimmvb/movie-challenge-fw/assets/137528066/9bbf7fc7-f7dc-4315-8bca-1b4b999030b2)
 
 
 ### Problems detected ⚠️
