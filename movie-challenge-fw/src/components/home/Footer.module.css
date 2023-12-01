@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: bold;
+  font-weight: 500;
+  src:
+    local('Lato Regular'),
+    local('Lato-Regular'),
+    url(../../fonts/Lato-Bold.ttf) format('truetype');
+}
+
+.pagination {
+  background: #121212;
+  position: fixed;
+  bottom: 0; /* Place the footer at the bottom */
+  right: 0; /* Align the footer to the derecha */
+}
+
+.paginationBttns {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  color: #121212;
+}
+.paginationBttns a {
+  border: 1px solid black;
+  padding: 5px 15px;
+  cursor: pointer;
+  background-color: #fee500;
+}
+
+.paginationBttns a:hover {
+  color: #ff00b7;
+}
+
+.paginationActive{
+  color: #ff00b7 !important;
+  font-weight: 500;
+}
