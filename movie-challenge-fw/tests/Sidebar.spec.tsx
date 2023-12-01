@@ -1,14 +1,14 @@
 import React from 'react';
 import { test, jest, expect, describe } from '@jest/globals';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/jest-globals';
 import Sidebar from '../src/components/home/Sidebar';
 import { MovieProvider } from '../src/components/MovieContext';
+import { fetchMovies } from '../src/components/data/FetchMovies';
 
 //Mock to API calls
 jest.mock('../src/components/data/FetchMovies', () => ({
-  fetchMovies: jest.fn(() => {
-    return Promise.resolve({
+  fetchMovies: jest.fn(() => Promise.resolve({
       pages: 1,
       results: [
         {
@@ -82,10 +82,9 @@ jest.mock('../src/components/data/FetchMovies', () => ({
       ],
       total_pages: 2,
       total_results: 4
-    });
-  }),
-  allGenres: jest.fn(() => {
-    return Promise.resolve({
+    })
+  ),
+  allGenres: jest.fn(() => Promise.resolve({
       genres: [
         {
           id: 28,
@@ -96,8 +95,8 @@ jest.mock('../src/components/data/FetchMovies', () => ({
           name: 'Romance'
         }
       ]
-    });
-  })
+    })
+  )
 }));
 
 //Interface to specify types
@@ -119,7 +118,7 @@ Object.defineProperty(window, 'scrollTo', {
 });
 
 describe('Sidebar', () => {
-  test('show movies according to the genre selected', async () => {
+  test('request movies according to the only genre selected', async () => {
     const component = render(
       <MovieProvider>
         <Sidebar />
@@ -131,9 +130,60 @@ describe('Sidebar', () => {
     fireEvent.click(romance);
 
     await waitFor(() => {
-      expect(screen.getByText('Scarface')).not.toBeInTheDocument();
+      expect(fetchMovies).toHaveBeenCalledWith(1, 'popularity.desc', ['10749']);
     });
+  });
+  test('request movies according to all the genres selected', async () => {
+    const component = render(
+      <MovieProvider>
+        <Sidebar />
+      </MovieProvider>
+    );
 
-    //component.debug();
+    const romance = await component.findByText('Romance');
+    const action = await component.findByText('Action');
+
+    fireEvent.click(romance);
+    fireEvent.click(action);
+
+    await waitFor(() => {
+      expect(fetchMovies).toHaveBeenCalledWith(1, 'popularity.desc', ['10749','28']);
+    });
+  });
+  test('erase movies genres from the request', async () => {
+    const component = render(
+      <MovieProvider>
+        <Sidebar />
+      </MovieProvider>
+    );
+
+    const romance = await component.findByText('Romance');
+    const action = await component.findByText('Action');
+
+    fireEvent.click(romance);
+    fireEvent.click(action);
+
+    /*Erase when click again*/
+    fireEvent.click(romance);
+
+    await waitFor(() => {
+      expect(fetchMovies).toHaveBeenCalledWith(1, 'popularity.desc', ['28']);
+    });
+  });
+  test('request movies according to the sort option selected', async () => {
+    const component = render(
+      <MovieProvider>
+        <Sidebar />
+      </MovieProvider>
+    );
+
+    const sortSelect = await component.findByRole('combobox');
+
+    fireEvent.change(sortSelect, { target: { value: 'primary_release_date.desc' } });
+
+    await waitFor(() => {
+      expect(fetchMovies).toHaveBeenCalledWith(1, 'primary_release_date.desc', []);
+    });
+    
   });
 });

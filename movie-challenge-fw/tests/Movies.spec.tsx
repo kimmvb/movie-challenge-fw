@@ -4,6 +4,7 @@ import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/jest-globals';
 import Movies from '../src/components/home/Movies';
 import { MovieProvider } from '../src/components/MovieContext';
+import { fetchMovies } from '../src/components/data/FetchMovies';
 
 //Mock to API calls
 jest.mock('../src/components/data/FetchMovies', () => ({
@@ -74,7 +75,7 @@ jest.mock('../src/components/data/FetchMovies', () => ({
           backdrop_path: '/jMBpJFRtrtIXymer93XLavPwI3P.jpg',
           genre_ids: [28, 53, 878],
           popularity: 115.975,
-          poster_path: '/r1x5JGpyqZU8PYhbs4UcrO1Xb6x.jpg',
+          poster_path: null,
           video: false,
           vote_average: 7.9,
           vote_count: 8874
@@ -109,7 +110,8 @@ type LinkProps = {
 //Mock for component Link
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual<typeof import('react-router-dom')>('react-router-dom'),
-  Link: ({ to, children }: LinkProps) => <a href={to}>{children}</a>
+  Link: ({ to, children }: LinkProps) => <a href={to}>{children}</a>,
+  useHistory: () => history
 }));
 
 // Mock for window.scrollTo
@@ -122,7 +124,7 @@ describe('Movies', () => {
   test('renders movie cards', async () => {
     render(
       <MovieProvider>
-        <Movies sortByOption="popularity.desc" />
+        <Movies sortByOption="popularity.desc" genres={[]} />
       </MovieProvider>
     );
 
@@ -131,6 +133,23 @@ describe('Movies', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Scarface')).toBeInTheDocument();
+    });
+  });
+  test('request movies according to the page selected', async () => {
+    render(
+      <MovieProvider>
+        <Movies sortByOption="popularity.desc" />
+      </MovieProvider>
+    );
+
+    const firstPage = await screen.findByText('1');
+    const secondPage = await screen.findByText('2');
+
+    fireEvent.click(firstPage);
+    fireEvent.click(secondPage);
+
+    await waitFor(() => {
+      expect(fetchMovies).toHaveBeenCalledWith(2, 'popularity.desc', undefined);
     });
   });
 });

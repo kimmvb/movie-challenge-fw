@@ -12,7 +12,6 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       const genresData = await allGenres();
-      console.log('Genres from API:', genresData.genres);
       setGenresAPI(genresData.genres);
     };
 
@@ -32,7 +31,6 @@ const Sidebar = () => {
     
     setSelectedGenres(updatedGenres);
   };
-  console.log(selectedGenres);
 
   return (
     <>
