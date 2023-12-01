@@ -12,7 +12,7 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       const genresData = await allGenres();
-      console.log(genresData.genres);
+      console.log('Genres from API:', genresData.genres);
       setGenresAPI(genresData.genres);
     };
 
@@ -26,11 +26,13 @@ const Sidebar = () => {
 
   const handleGenreClick = (selectedGenre: string) => {
     const updatedGenres = selectedGenres.includes(selectedGenre)
-      ? selectedGenres.filter((genre) => genre !== selectedGenre)
+      ? selectedGenres.filter((genre: string) => genre !== selectedGenre)
       : [...selectedGenres, selectedGenre];
-
+    
+    
     setSelectedGenres(updatedGenres);
   };
+  console.log(selectedGenres);
 
   return (
     <>

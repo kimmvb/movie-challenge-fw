@@ -1,8 +1,9 @@
 import React from 'react';
 import { test, jest, expect, describe } from '@jest/globals';
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/jest-globals';
 import Movies from '../src/components/home/Movies';
+import { MovieProvider } from '../src/components/MovieContext';
 
 //Mock to API calls
 jest.mock('../src/components/data/FetchMovies', () => ({
@@ -119,19 +120,17 @@ Object.defineProperty(window, 'scrollTo', {
 
 describe('Movies', () => {
   test('renders movie cards', async () => {
-    render(<Movies sortByOption="popularity.desc" />);
+    render(
+      <MovieProvider>
+        <Movies sortByOption="popularity.desc" />
+      </MovieProvider>
+    );
+
+    const firstPage = await screen.findByText('1');
+    fireEvent.click(firstPage);
 
     await waitFor(() => {
       expect(screen.getByText('Scarface')).toBeInTheDocument();
     });
   });
-  /*test('change pagination', async () => {
-    const component = render(<Movies sortByOption="popularity.desc" />);
-
-    await waitFor(() => {
-      expect(screen.getByText('Scarface')).toBeInTheDocument();
-    });
-
-    component.debug();
-  });*/
 });

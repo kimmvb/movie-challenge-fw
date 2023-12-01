@@ -1,8 +1,8 @@
 import React from 'react';
 import { test, jest, expect, describe } from '@jest/globals';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/jest-globals';
-import Sidebar from '../src/components/home/Sidebar';
+import MovieDetails from '../src/components/movie/MovieDetails';
 import { MovieProvider } from '../src/components/MovieContext';
 
 //Mock to API calls
@@ -97,6 +97,68 @@ jest.mock('../src/components/data/FetchMovies', () => ({
         }
       ]
     });
+  }),
+  fetchMovieID: jest.fn(() => {
+    return Promise.resolve({
+      adult: false,
+      backdrop_path: null,
+      belongs_to_collection: {
+        id: 386410,
+        name: 'Dragon Ball Collection',
+        poster_path: '/8N1nLnRbwErhuIMekAqER0uBuf0.jpg',
+        backdrop_path: '/i5ECrR2zT7GQl0J8WdyGTm9D6d6.jpg'
+      },
+      budget: 0,
+      genres: [
+        {
+          id: 28,
+          name: 'Action'
+        },
+        {
+          id: 16,
+          name: 'Animation'
+        }
+      ],
+      homepage: '',
+      id: 116776,
+      imdb_id: 'tt0142248',
+      original_language: 'ja',
+      original_title: 'ドラゴンボール 魔訶不思議大冒険',
+      overview:
+        "Master Roshi has succeeded at the one mission he valued most: to train Goku and Krillin to become ultimate fighters. So, he arranges for them to test their mettle at a competition hosted by Emperor Chiaotzu. Not everyone's playing by the rules, however, as a member of the ruler's household schemes to use the Dragonballs to extort money and power from the royal.",
+      popularity: 391.674,
+      poster_path: '/5aXG0B3TYTpQsodXzvYCkKQfpB1.jpg',
+      production_companies: [
+        {
+          id: 5542,
+          logo_path: '/ayE4LIqoAWotavo7xdvYngwqGML.png',
+          name: 'Toei Animation',
+          origin_country: 'JP'
+        }
+      ],
+      production_countries: [
+        {
+          iso_3166_1: 'JP',
+          name: 'Japan'
+        }
+      ],
+      release_date: '1988-07-09',
+      revenue: 8201600,
+      runtime: 48,
+      spoken_languages: [
+        {
+          english_name: 'Japanese',
+          iso_639_1: 'ja',
+          name: '日本語'
+        }
+      ],
+      status: 'Released',
+      tagline: '',
+      title: 'Dragon Ball: Mystical Adventure',
+      video: false,
+      vote_average: 6.769,
+      vote_count: 225
+    });
   })
 }));
 
@@ -118,22 +180,20 @@ Object.defineProperty(window, 'scrollTo', {
   writable: true
 });
 
-describe('Sidebar', () => {
-  test('show movies according to the genre selected', async () => {
-    const component = render(
+describe('Movie Details', () => {
+  test('show movies details', async () => {
+    render(
       <MovieProvider>
-        <Sidebar />
+        <MovieDetails />
       </MovieProvider>
     );
 
-    const romance = await component.findByText('Romance');
-
-    fireEvent.click(romance);
-
     await waitFor(() => {
-      expect(screen.getByText('Scarface')).not.toBeInTheDocument();
-    });
+        expect(screen.getByRole('heading', { name: /Dragon Ball: Mystical Adventure/i })).toBeInTheDocument();
+        expect(screen.getByText(/225/i)).toBeInTheDocument();
+        expect(screen.getByText(/: july 8, 1988/i)).toBeInTheDocument();
+      },)
 
-    //component.debug();
+      //screen.logTestingPlaygroundURL();
   });
 });

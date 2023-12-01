@@ -33,7 +33,6 @@ const Movies: React.FC<MoviesProps> = ({ sortByOption, genres }) => {
 
   const ChangePage = ({ selected }: { selected: number }) => {
     setPage(selected + 1);
-    console.log(selected);
   };
 
   const formatDateToWords = (dateString: string) => {

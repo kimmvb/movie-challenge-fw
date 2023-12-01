@@ -32,13 +32,14 @@ const MovieDetails = () => {
 
   useEffect(() => {
     const fetchDetails = async () => {
-      try {
+      //try {
         const response = await fetchMovieID(Number(id));
+        //console.log(response);
         setMovieDetails(response);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } catch (error) {
-        console.error('Error fetching movies:', error);
-      }
+      // } catch (error) {
+      //   console.error('Error fetching movies:', error);
+      // }
     };
 
     fetchDetails();

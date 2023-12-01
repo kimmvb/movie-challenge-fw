@@ -59,8 +59,8 @@ export const MovieProvider: React.FC<MovieProviderProps> = ({ children }) => {
 // eslint-disable-next-line react-refresh/only-export-components
 export const useMovieContext = () => {
   const context = useContext(MovieContext);
-  if (!context) {
+  /*if (!context) {
     throw new Error('useMovieContext should be used inside MovieProvider');
-  }
+  }*/
   return context;
 };
