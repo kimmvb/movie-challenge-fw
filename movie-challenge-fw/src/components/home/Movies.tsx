@@ -15,6 +15,7 @@ interface MoviesProps {
 const Movies: React.FC<MoviesProps> = ({ sortByOption, genres }) => {
   const URL_IMAGE = 'https://image.tmdb.org/t/p/original';
 
+  //useState() is a React Hook that lets you add a state variable to your component.
   const [movies, setMovies] = useState<Movie[]>([]);
   const [totalPages, setTotalPages] = useState(1);
 

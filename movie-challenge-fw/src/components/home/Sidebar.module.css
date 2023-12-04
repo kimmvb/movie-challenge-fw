@@ -1,3 +1,43 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('Lato Regular'),
+    local('Lato-Regular'),
+    url(fonts/Lato-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: bold;
+  font-weight: 500;
+  src:
+    local('Lato Regular'),
+    local('Lato-Regular'),
+    url(../../fonts/Lato-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: light;
+  font-weight: 300;
+  src:
+    local('Lato Regular'),
+    local('Lato-Regular'),
+    url(../../fonts/Lato-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Marcellus SC';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('Marcellus SC Regular'),
+    local('MarcellusSC-Regular'),
+    url(../../fonts/MarcellusSC-Regular.ttf) format('truetype');
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;

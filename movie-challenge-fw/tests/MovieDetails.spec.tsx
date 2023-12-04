@@ -193,7 +193,5 @@ describe('Movie Details', () => {
         expect(screen.getByText(/225/i)).toBeInTheDocument();
         expect(screen.getByText(/: july 8, 1988/i)).toBeInTheDocument();
       },)
-
-      //screen.logTestingPlaygroundURL();
   });
 });
