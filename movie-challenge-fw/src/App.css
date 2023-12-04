@@ -1,14 +1,4 @@
 /* General styles */
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  src:
-    local('Lato Regular'),
-    local('Lato-Regular'),
-    url(fonts/Lato-Regular.ttf) format('truetype');
-}
-
 :root {
   font-family: 'Lato', sans-serif;
   line-height: 1.5;
@@ -37,17 +27,3 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
-
-/*a {
-  font-weight: 500;
-  color: #9d00bd;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #9d00bd;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}*/

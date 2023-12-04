@@ -6,9 +6,11 @@ import { allGenres, Genre } from '../data/FetchMovies';
 import { useMovieContext } from '../MovieContext';
 
 const Sidebar = () => {
+  //These varibles and states can be found as part of the context of the app
   const { sortBy, setSortBy, selectedGenres, setSelectedGenres, genresAPI, setGenresAPI } =
     useMovieContext();
-
+  
+  //useEffect() is a React Hook that lets you synchronize a component with an external system.
   useEffect(() => {
     const fetchGenres = async () => {
       const genresData = await allGenres();
@@ -27,8 +29,7 @@ const Sidebar = () => {
     const updatedGenres = selectedGenres.includes(selectedGenre)
       ? selectedGenres.filter((genre: string) => genre !== selectedGenre)
       : [...selectedGenres, selectedGenre];
-    
-    
+
     setSelectedGenres(updatedGenres);
   };
 

@@ -45,6 +45,7 @@ export interface AllGenresResponse {
   genres: Genre[];
 }
 
+/* Fetch movies */
 export const fetchMovies = (
   pageNumber: number,
   sortByOption: string = 'popularity.desc',
@@ -64,6 +65,9 @@ export const fetchMovies = (
     sort_by: sortByOption
   };
 
+  //If there are elements in a genres ID parameter, a new param
+  //will be added called "with_genres".
+  //If there are not, the param will not be added.
   if (genresId && genresId.length > 0) {
     params.with_genres = genresId.join(',');
   }
@@ -75,12 +79,13 @@ export const fetchMovies = (
     .then((response: AxiosResponse<DiscoverMoviesResponse>) => {
       return response.data;
     })
-    //.catch((error) => {
-      //console.error(error);
-     // throw error;
-    //});
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
 };
 
+/* Fetch movies genres */
 export const allGenres = (): Promise<AllGenresResponse> => {
   const API_URL = 'https://api.themoviedb.org/3';
   const API_KEY = 'aed0b9b04b9b2314524e703621a1f16e';
@@ -92,12 +97,13 @@ export const allGenres = (): Promise<AllGenresResponse> => {
     .then((response) => {
       return response.data;
     })
-    //.catch((error) => {
-     //// console.error(error);
-     // throw error;
-   // });
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
 };
 
+/* Fetch movies ID */
 export const fetchMovieID = (movieID: number) => {
   const API_URL = 'https://api.themoviedb.org/3';
   const API_KEY = 'aed0b9b04b9b2314524e703621a1f16e';
@@ -109,8 +115,8 @@ export const fetchMovieID = (movieID: number) => {
     .then((response) => {
       return response.data;
     })
-    //.catch((error) => {
-    //  console.error(error);
-    //  throw error;
-   // });
-}
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
+};
